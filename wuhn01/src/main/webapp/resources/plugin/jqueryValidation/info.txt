@@ -1,0 +1,1 @@
+版本为：jquery-validation-1.14.0

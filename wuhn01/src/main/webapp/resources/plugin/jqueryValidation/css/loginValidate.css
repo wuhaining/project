@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+/**
+*@author whn
+*@创建时间 2016-01-27
+*@功能 登陆校验样式
+**/
+
+/********错误显示样式*********/
+input.error,select.error{
+		position:relative;
+	}
+	
+label.error { 
+	color:Red; 
+	width:37px;
+	font-size:13px; 
+	display: inline !important;/*显示在同一行上*/
+	position:absolute;
+} 

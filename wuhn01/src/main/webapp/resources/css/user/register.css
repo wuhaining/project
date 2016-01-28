@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+/**
+*@author wuhn
+*@创建时间 2015-12-31
+*@功能 登陆样式
+**/
+
+/********排版*********/
+.regitsterContainer{
+	margin-top:50px;
+}
+
+.regitsterForm{
+	margin:0 auto;
+}
+
+/********输入框**********/
+.loginForm .form-group{
+	width:320px;
+	margin-left:10px;
+}
+
+/*********提交按钮***********/
+.btnSubmit{
+	width:320px;
+}
