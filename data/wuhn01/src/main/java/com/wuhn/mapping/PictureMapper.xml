@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuhn.dao.PictureMapper" >
+  <resultMap id="BaseResultMap" type="com.wuhn.module.Picture" >
+    <id column="pictureid" property="pictureid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="directory" property="directory" jdbcType="VARCHAR" />
+    <result column="imageName" property="imagename" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="INTEGER" />
+    <result column="describeContent" property="describecontent" jdbcType="VARCHAR" />
+    <result column="orderNumber" property="ordernumber" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pictureid, userid, directory, imageName, identity, describeContent, orderNumber, 
+    title
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from picture
+    where pictureid = #{pictureid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from picture
+    where pictureid = #{pictureid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuhn.module.Picture" >
+    insert into picture (pictureid, userid, directory, 
+      imageName, identity, describeContent, 
+      orderNumber, title)
+    values (#{pictureid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{directory,jdbcType=VARCHAR}, 
+      #{imagename,jdbcType=VARCHAR}, #{identity,jdbcType=INTEGER}, #{describecontent,jdbcType=VARCHAR}, 
+      #{ordernumber,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuhn.module.Picture" >
+    insert into picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pictureid != null" >
+        pictureid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="directory != null" >
+        directory,
+      </if>
+      <if test="imagename != null" >
+        imageName,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="describecontent != null" >
+        describeContent,
+      </if>
+      <if test="ordernumber != null" >
+        orderNumber,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pictureid != null" >
+        #{pictureid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="directory != null" >
+        #{directory,jdbcType=VARCHAR},
+      </if>
+      <if test="imagename != null" >
+        #{imagename,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="describecontent != null" >
+        #{describecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernumber != null" >
+        #{ordernumber,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuhn.module.Picture" >
+    update picture
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="directory != null" >
+        directory = #{directory,jdbcType=VARCHAR},
+      </if>
+      <if test="imagename != null" >
+        imageName = #{imagename,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=INTEGER},
+      </if>
+      <if test="describecontent != null" >
+        describeContent = #{describecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ordernumber != null" >
+        orderNumber = #{ordernumber,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pictureid = #{pictureid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuhn.module.Picture" >
+    update picture
+    set userid = #{userid,jdbcType=VARCHAR},
+      directory = #{directory,jdbcType=VARCHAR},
+      imageName = #{imagename,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=INTEGER},
+      describeContent = #{describecontent,jdbcType=VARCHAR},
+      orderNumber = #{ordernumber,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR}
+    where pictureid = #{pictureid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 根据条件查询 -->
+  <select id="selectByPicture"  resultMap="BaseResultMap" parameterType="com.wuhn.module.Picture">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from picture
+  	<where>
+  		<if test="pictureid != null">AND pictureid = #{pictureid,jdbcType=VARCHAR}</if>
+  		<if test="userid != null">AND userid = #{userid,jdbcType=VARCHAR}</if>
+  		<if test="directory != null">AND directory = #{directory,jdbcType=VARCHAR}</if>
+  		<if test="imagename != null">AND imagename = #{imagename,jdbcType=VARCHAR}</if>
+  		<if test="identity != null">AND identity = #{identity,jdbcType=VARCHAR}</if>
+  	</where>
+  	order by orderNumber desc
+  </select>
+</mapper>

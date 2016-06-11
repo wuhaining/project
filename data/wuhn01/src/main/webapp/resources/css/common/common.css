@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+/**
+*@author wuhn
+*@创建时间 2015/9/2
+*@功能 没登陆之前的页面公共样式
+**/
+
+
+/**********基本base*********/
+body{
+	padding-top: 50px;
+	padding-bottom: 5px;
+	color: #5a5a5a;
+}
+
+hr{
+	margin: 40px 0;
+}
+
+
+/***********导航栏*************/
+.navigation{
+	height: 50px;
+	width: 100%;
+	margin-top:1px;
+	margin-bottom: -4px;
+}
+
+
+
+/************中间内容展示*************/
+.content{
+	height: 1000px;
+	width: 100%;
+}
+
+
+/*************底部********************/
+.footer{
+	color: #777;
+	padding: 20px 0;
+	width: 100%;
+	height:100%;
+}
+

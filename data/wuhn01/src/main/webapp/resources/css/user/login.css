@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+/**
+*@author wuhn
+*@创建时间 2015-12-30
+*@功能 登陆样式
+**/
+
+/********排版*********/
+.loginContainer{
+	margin-top:10%;
+}
+
+.loginForm{
+	margin:0 auto;
+	width:340px;
+}
+
+/********输入框**********/
+.loginForm .form-group{
+	width:320px;
+	margin-left:10px;
+}
+
+/*********提交按钮***********/
+.btnSubmit{
+	width:320px;
+}
+
+
+
+
+
+/**登陆提示信息***/
+.loginTip{
+	color:red;
+}

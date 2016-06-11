@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+/**
+*@author wuhn
+*@创建时间 2016-03-08
+*@功能 注册校验样式
+**/
+
+/********错误显示样式*********/
+input.error,select.error{
+		border:1px solid red;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		-webkit-border-radius: 3px;	
+		-ms-border-radius: 3px;	
+		box-shadow:4px 2px 6px #000;
+		-khtml-box-shadow:4px 2px 6px #000;
+		-ms-box-shadow:4px 2px 6px #000;
+		-webkit-box-shadow:4px 2px 6px #000;
+		-moz-box-shadow:4px 2px 6px #000;
+		
+		/*position:relative;*/
+		
+	}
+label.error { 
+	color:Red; 
+	font-size:15px; 
+	margin-top:2px;
+	margin-left:5px; 
+	padding-left:17px; 		
+	background: url(error.png) left no-repeat; 
+	background-color:#F5F5F5; 	
+	background-size:16px 16px;
+	border:1px solid #C3AB88;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;	
+	-ms-border-radius: 6px;	
+	
+	/*display: inline !important;显示在同一行上*/
+	/*position:absolute;*/
+	
+}
+
+/********验证正确显示样式*********/
+input.valid,select.valid{
+		border:1px solid #32CD32;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		-webkit-border-radius: 3px;	
+		-ms-border-radius: 3px;			
+		background: url(success.png) left no-repeat; 
+		background-color:#F5F5F5; 	
+		background-size:18px 18px;
+	}

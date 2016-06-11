@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+/**
+*@author whn
+*@创建时间 2016-05-12
+*@功能 个人图片
+**/
+
+/**基本样式**/
+figure,figure img,figcaption,figcaption h2{margin:0;padding:0;}
+
+figure{position:relative;width:33.33%;height:300px;overflow:hidden;float:left;background:#2F0000;}
+figcaption{position:absolute;top:0px;left:0px;color:#fff;font-family:"微软雅黑";}
+figure img{opacity:0.8} 
+figure:hover img{opacity:1;}
+figure figcaption h2{
+	margin-top:20px;
+	margin-bottom:20px;
+	transition: all 0.35s;
+	-webkit-transition: all 0.35s; /* Safari */
+	-ms-transition: all 0.35s; /* Safari */
+	-moz-transition: all 0.35s; /* firefox */
+}
+figure figcaption div{
+	transition: all 1.20s;
+	-webkit-transition: all 1.20s; /* Safari */
+	-ms-transition: all 1.20s; /* Safari */
+	-moz-transition: all 1.20s; /* firefox */
+}
+/**响应式样式**/
+@media screen and (max-width:600px){
+	figure{width:100%;}
+}
+@media screen and (min-width:601px) and (max-width:1000px){
+	figure{width:50%}
+}
+@media screen and (min-width:1001px){
+	figure{width:33.33%}
+}
+
+/**动画**/
+.figurebase{}
+.figurebase figcaption h2{
+	transform: translate(0px,0px);
+	-ms-transform: translate(0px,0px); /* IE 9 */
+	-webkit-transform: translate(0px,0px); /* Safari and Chrome */
+	-moz-transform: translate(0px,0px);
+}
+.figurebase:hover figcaption h2{
+	transform: translate(150px,0px) scale(2,2);
+	-ms-transform: translate(150px,0px) scale(2,2); /* IE 9 */
+	-webkit-transform: translate(150px,0px) scale(2,2); /* Safari and Chrome */
+	-moz-transform: translate(150px,0px) scale(2,2);
+}
+
+.figurebase figcaption div{word-wrap:break-word;text-overflow: ellipsis;width:250px;
+	transform: translate(0px,0px)  rotate(-330deg);
+	-ms-transform: translate(0px,0px)  rotate(-330deg); /* IE 9 */
+	-webkit-transform: translate(0px,0px)  rotate(-330deg); /* Safari and Chrome */
+	-moz-transform: translate(0px,0px)  rotate(-330deg);
+}
+.figurebase:hover figcaption div{
+	transform: translate(40px,20px) rotate(0deg);
+	-ms-transform: translate(40px,20px) rotate(0deg); /* IE 9 */
+	-webkit-transform: translate(40px,20px) rotate(0deg) ; /* Safari and Chrome */
+	-moz-transform: translate(40px,20px) rotate(0deg);	
+}

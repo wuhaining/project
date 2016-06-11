@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuhn.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.wuhn.module.Article" >
+    <id column="articleid" property="articleid" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="VARCHAR" />
+    <result column="articleTime" property="articletime" jdbcType="VARCHAR" />
+    <result column="articleType" property="articletype" jdbcType="VARCHAR" />
+    <result column="articleTitle" property="articletitle" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wuhn.module.Article" extends="BaseResultMap" >
+    <result column="articleContent" property="articlecontent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    articleid, userid, articleTime, articleType, articleTitle, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    articleContent
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from article
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuhn.module.Article" >
+    insert into article (articleid, userid, articleTime, 
+      articleType, articleTitle, status, 
+      articleContent)
+    values (#{articleid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{articletime,jdbcType=VARCHAR}, 
+      #{articletype,jdbcType=VARCHAR}, #{articletitle,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{articlecontent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuhn.module.Article" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        articleid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="articletime != null" >
+        articleTime,
+      </if>
+      <if test="articletype != null" >
+        articleType,
+      </if>
+      <if test="articletitle != null" >
+        articleTitle,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="articlecontent != null" >
+        articleContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleid != null" >
+        #{articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="articletime != null" >
+        #{articletime,jdbcType=VARCHAR},
+      </if>
+      <if test="articletype != null" >
+        #{articletype,jdbcType=VARCHAR},
+      </if>
+      <if test="articletitle != null" >
+        #{articletitle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecontent != null" >
+        #{articlecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuhn.module.Article" >
+    update article
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="articletime != null" >
+        articleTime = #{articletime,jdbcType=VARCHAR},
+      </if>
+      <if test="articletype != null" >
+        articleType = #{articletype,jdbcType=VARCHAR},
+      </if>
+      <if test="articletitle != null" >
+        articleTitle = #{articletitle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="articlecontent != null" >
+        articleContent = #{articlecontent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wuhn.module.Article" >
+    update article
+    set userid = #{userid,jdbcType=VARCHAR},
+      articleTime = #{articletime,jdbcType=VARCHAR},
+      articleType = #{articletype,jdbcType=VARCHAR},
+      articleTitle = #{articletitle,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      articleContent = #{articlecontent,jdbcType=LONGVARCHAR}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuhn.module.Article" >
+    update article
+    set userid = #{userid,jdbcType=VARCHAR},
+      articleTime = #{articletime,jdbcType=VARCHAR},
+      articleType = #{articletype,jdbcType=VARCHAR},
+      articleTitle = #{articletitle,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where articleid = #{articleid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 根据某一个属性查询 -->
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.wuhn.module.Article">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from article
+  	<where>
+  		<if test="articleid != null">AND articleid = #{articleid,jdbcType=VARCHAR}</if>
+  		<if test="userid != null">AND userid = #{userid,jdbcType=VARCHAR}</if>
+  		<if test="articletime != null">AND articletime like concat(cancat('%',#{articletime,jdbcType=VARCHAR}),'%')</if>
+  		<if test="articletype != null">AND articletype = #{articletype,jdbcType=VARCHAR}</if>
+  		<if test="articletitle != null">AND articletitle like concat(cancat('%',#{articletitle,jdbcType=VARCHAR}),'%')</if>
+  		<if test="articlecontent != null">AND articlecontent like concat(cancat('%',#{articlecontent,jdbcType=VARCHAR}),'%')</if>
+  		<if test="status != null">AND status = #{status,jdbcType=LONGVARBINARY}</if>
+  	</where>
+  </select>
+  
+</mapper>

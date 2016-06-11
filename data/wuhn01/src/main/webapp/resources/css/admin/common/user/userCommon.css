@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+/**
+*@author whn
+*@创建时间 2016-03-07
+*@功能 用户公共样式
+**/
+
+/*************页面背景色**************/
+body{
+	background: #eef1f5 ;
+	
+}
+
+/**************整体布局****************/
+.userLayout{
+	margin-top:15px;
+	padding:5px;
+}
+
+
+/******userInfo样式*******/
+.infoUser-tyle{
+	padding-top:7px;
+	font-weight:bolder;
+}

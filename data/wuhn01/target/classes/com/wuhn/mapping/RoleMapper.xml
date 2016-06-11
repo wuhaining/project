@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuhn.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.wuhn.module.Role" >
+    <id column="roleid" property="roleid" jdbcType="VARCHAR" />
+    <result column="rolePermission" property="rolepermission" jdbcType="VARCHAR" />
+    <result column="identify" property="identify" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="orderno" property="orderno" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    roleid, rolePermission, identify, description, orderno
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where roleid = #{roleid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from role
+    where roleid = #{roleid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuhn.module.Role" >
+    insert into role (roleid, rolePermission, identify, 
+      description, orderno)
+    values (#{roleid,jdbcType=VARCHAR}, #{rolepermission,jdbcType=VARCHAR}, #{identify,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{orderno,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuhn.module.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        roleid,
+      </if>
+      <if test="rolepermission != null" >
+        rolePermission,
+      </if>
+      <if test="identify != null" >
+        identify,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=VARCHAR},
+      </if>
+      <if test="rolepermission != null" >
+        #{rolepermission,jdbcType=VARCHAR},
+      </if>
+      <if test="identify != null" >
+        #{identify,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuhn.module.Role" >
+    update role
+    <set >
+      <if test="rolepermission != null" >
+        rolePermission = #{rolepermission,jdbcType=VARCHAR},
+      </if>
+      <if test="identify != null" >
+        identify = #{identify,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=INTEGER},
+      </if>
+    </set>
+    where roleid = #{roleid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuhn.module.Role" >
+    update role
+    set rolePermission = #{rolepermission,jdbcType=VARCHAR},
+      identify = #{identify,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=INTEGER}
+    where roleid = #{roleid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 查询所有角色 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from role
+  </select>
+  
+  <!-- 角色条件查询 -->
+  <select id="selectByRole"  resultMap="BaseResultMap" parameterType="com.wuhn.module.Role">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from role
+  	<where>
+  		<if test="roleid != null">AND roleid = #{roleid,jdbcType=VARCHAR}</if>
+  		<if test="rolepermission != null">AND rolepermission = #{rolepermission,jdbcType=VARCHAR}</if>
+  		<if test="identify != null">AND identify = #{identify,jdbcType=VARCHAR}</if>
+  		<if test="description != null">AND description = #{description,jdbcType=VARCHAR}</if>
+  		<if test="orderno != null">AND orderno = #{orderno,jdbcType=VARCHAR}</if>
+  	</where>
+  </select>
+</mapper>

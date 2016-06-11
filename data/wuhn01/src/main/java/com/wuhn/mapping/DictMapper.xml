@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuhn.dao.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.wuhn.module.Dict" >
+    <id column="dictentryid" property="dictentryid" jdbcType="VARCHAR" />
+    <result column="dicttypeid" property="dicttypeid" jdbcType="VARCHAR" />
+    <result column="orderno" property="orderno" jdbcType="INTEGER" />
+    <result column="dictid" property="dictid" jdbcType="VARCHAR" />
+    <result column="dictname" property="dictname" jdbcType="VARCHAR" />
+    <result column="dictshort" property="dictshort" jdbcType="VARCHAR" />
+    <result column="parentdictid" property="parentdictid" jdbcType="VARCHAR" />
+    <result column="isenable" property="isenable" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dictentryid, dicttypeid, orderno, dictid, dictname, dictshort, parentdictid, isenable
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dict_entry
+    where dictentryid = #{dictentryid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dict_entry
+    where dictentryid = #{dictentryid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wuhn.module.Dict" >
+    insert into dict_entry (dictentryid, dicttypeid, orderno, 
+      dictid, dictname, dictshort, 
+      parentdictid, isenable)
+    values (#{dictentryid,jdbcType=VARCHAR}, #{dicttypeid,jdbcType=VARCHAR}, #{orderno,jdbcType=INTEGER}, 
+      #{dictid,jdbcType=VARCHAR}, #{dictname,jdbcType=VARCHAR}, #{dictshort,jdbcType=VARCHAR}, 
+      #{parentdictid,jdbcType=VARCHAR}, #{isenable,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wuhn.module.Dict" >
+    insert into dict_entry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictentryid != null" >
+        dictentryid,
+      </if>
+      <if test="dicttypeid != null" >
+        dicttypeid,
+      </if>
+      <if test="orderno != null" >
+        orderno,
+      </if>
+      <if test="dictid != null" >
+        dictid,
+      </if>
+      <if test="dictname != null" >
+        dictname,
+      </if>
+      <if test="dictshort != null" >
+        dictshort,
+      </if>
+      <if test="parentdictid != null" >
+        parentdictid,
+      </if>
+      <if test="isenable != null" >
+        isenable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictentryid != null" >
+        #{dictentryid,jdbcType=VARCHAR},
+      </if>
+      <if test="dicttypeid != null" >
+        #{dicttypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="dictid != null" >
+        #{dictid,jdbcType=VARCHAR},
+      </if>
+      <if test="dictname != null" >
+        #{dictname,jdbcType=VARCHAR},
+      </if>
+      <if test="dictshort != null" >
+        #{dictshort,jdbcType=VARCHAR},
+      </if>
+      <if test="parentdictid != null" >
+        #{parentdictid,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null" >
+        #{isenable,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wuhn.module.Dict" >
+    update dict_entry
+    <set >
+      <if test="dicttypeid != null" >
+        dicttypeid = #{dicttypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        orderno = #{orderno,jdbcType=INTEGER},
+      </if>
+      <if test="dictid != null" >
+        dictid = #{dictid,jdbcType=VARCHAR},
+      </if>
+      <if test="dictname != null" >
+        dictname = #{dictname,jdbcType=VARCHAR},
+      </if>
+      <if test="dictshort != null" >
+        dictshort = #{dictshort,jdbcType=VARCHAR},
+      </if>
+      <if test="parentdictid != null" >
+        parentdictid = #{parentdictid,jdbcType=VARCHAR},
+      </if>
+      <if test="isenable != null" >
+        isenable = #{isenable,jdbcType=TINYINT},
+      </if>
+    </set>
+    where dictentryid = #{dictentryid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wuhn.module.Dict" >
+    update dict_entry
+    set dicttypeid = #{dicttypeid,jdbcType=VARCHAR},
+      orderno = #{orderno,jdbcType=INTEGER},
+      dictid = #{dictid,jdbcType=VARCHAR},
+      dictname = #{dictname,jdbcType=VARCHAR},
+      dictshort = #{dictshort,jdbcType=VARCHAR},
+      parentdictid = #{parentdictid,jdbcType=VARCHAR},
+      isenable = #{isenable,jdbcType=TINYINT}
+    where dictentryid = #{dictentryid,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 字典查询 -->
+  <select id="selectByDict"  resultMap="BaseResultMap" parameterType="com.wuhn.module.Dict">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from dict_entry
+  	<where>
+  		<if test="dictentryid != null">AND dictentryid = #{dictentryid,jdbcType=VARCHAR}</if>
+  		<if test="dicttypeid != null">AND dicttypeid = #{dicttypeid,jdbcType=VARCHAR}</if>
+  		<if test="orderno != null">AND orderno = #{orderno,jdbcType=VARCHAR}</if>
+  		<if test="dictid != null">AND dictid = #{dictid,jdbcType=VARCHAR}</if>
+  		<if test="dictname != null">AND dictname = #{dictname,jdbcType=VARCHAR}</if>
+  		<if test="dictshort != null">AND dictshort = #{dictshort,jdbcType=VARCHAR}</if>
+  		<if test="parentdictid != null">AND parentdictid = #{parentdictid,jdbcType=VARCHAR}</if>
+  		<if test="isenable != null">AND isenable = #{isenable,jdbcType=VARCHAR}</if>
+  	</where>
+  </select>
+  
+</mapper>
